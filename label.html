@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .chk-label {
+        cursor: pointer;
+        user-select: none;
+        white-space: nowrap;
+     }
+    .custom-chk {
+        display: inline-block;
+        vertical-align: middle;
+        width: 20px;
+        height: 20px;
+        border: 1px solid #333;
+        background-color: #fff;
+        vertical-align: middle;
+        margin-right: 0.6rem;
+    }
+    .chk-label input[type='checkbox']:checked + .custom-chk {
+        border: 0;
+        background: url('chk-on.png') no-repeat center;
+    }
+    .chk-txt {
+        vertical-align: middle;
+        font-size: 1.6rem;
+        font-family: 'NSKR';
+    }
+    .visibility-hidden {
+        display: none;
+    }
+
+   .content {
+        padding: 1rem 3rem;
+        /* min-height: 8rem; */
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+    }
+    .radio-label {
+        cursor: pointer;
+        user-select: none;
+        white-space: nowrap;
+    }
+    .custom-radio {
+        display: inline-block;
+        vertical-align: middle;
+        width: 20px;
+        height: 20px;
+        border: 1px solid #9d9d9d;
+        border-radius: 50%;
+        background-color: #fff;
+        vertical-align: middle;
+        margin-right: 0.6rem;
+    }
+    .radio-label input[type='radio']:checked + .custom-radio {
+        border: 0;
+        background: url('radio-on.png') no-repeat center;
+    }
+    .radio-txt {
+        vertical-align: middle;
+        font-size: 1.6rem;
+        font-family: 'NSKR';
+    }
+
+    </style>
+</head>
+<body>
+    <label class="chk-label">
+        <input type="checkbox" class="visibility-hidden">
+        <span class="custom-chk"></span>
+        <span>이용안내 확인하기(필수)</span>
+    </label>
+
+
+    <div class="grid">
+        <p class="title">이용목적 및 내용</p>
+        <div class="content">
+            <label class="radio-label">
+                <input type="radio" name="purpose" class="visibility-hidden">
+                <span class="custom-radio"></span>
+                <span class="radio-txt">회의</span> 
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="purpose" class="visibility-hidden">
+                <span class="custom-radio"></span>
+                <span class="radio-txt">세미나</span> 
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="purpose" class="visibility-hidden">
+                <span class="custom-radio"></span>
+                <span class="radio-txt">교육</span> 
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="purpose" class="visibility-hidden">
+                <span class="custom-radio"></span>
+                <span class="radio-txt">기타</span>
+                <input type="text" placeholder="예) 창업 아이템 선정 회의 촬영 또는 편집 등.." class="input48">
+            </label>
+        </div>	
+    </div>
+</body>
+</html>
