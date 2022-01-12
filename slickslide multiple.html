@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <title>Document</title>
+    <style>
+        img{
+            width: 300px;
+            height: 300px;
+        }
+        .visual{
+            position: relative;
+        }
+        .visual button{
+            position: absolute;
+            z-index: 10;
+            top: 50%; 
+            transform: translateY(-50%);
+            width: 71px;
+            height: 71px;
+            border-radius: 50%;
+            border: none;
+            background-color: rgba(0,0,0,.5);
+        }
+        .visual button::before {font-family: 'xeicon'; color: #fff; font-size: 45px;}
+        .visual button.slick-prev{left: 50px; font-size: 0; color: transparent;}
+        .visual button.slick-prev::before{content:"\e93d"; font-family: xeicon;}
+        .visual button.slick-next{right: 50px  ; font-size: 0; color: transparent;}
+        .visual button.slick-next::before{content: "\e940"; font-family: xeicon;}
+
+        .visual div img{
+            transform: translatex(50%);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- <i class="xi-angle-left-thin"></i>
+    <i class="xi-angle-right-thin"></i>
+    콘텐츠 값 e93d d940d 구하기 위해 넣어놓은 것 -->
+
+    <section class="visual">
+        <div><img src="다운로드.jpg" alt=""></div>
+        <div><img src="다운로드2.jpg" alt=""></div>
+        <div><img src="다운로드3.jpg" alt=""></div>
+        <div><img src="다운로드.jpg" alt=""></div>
+        <div><img src="다운로드2.jpg" alt=""></div>
+        <div><img src="다운로드3.jpg" alt=""></div>
+
+    </section>
+
+    <script type="text/javascript">
+
+        
+
+        $('.visual').slick({
+        infinite: true,
+        slidesToShow: 5,
+        slidesToScroll: 3
+        });
+			
+		
+    </script>
+</body>
+</html>
