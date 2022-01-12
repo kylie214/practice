@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    .container{
+        width: calc(1300px +160px);
+        padding: 0 80px;
+        max-width:100%;
+        margin:0 auto;
+
+    }
+/*회원가입 순서 네비게이션*/
+#sign_stage{
+	margin-bottom:6.3rem;
+}
+#sign_stage ul.stage-list{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+#sign_stage ul.stage-list li{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+#sign_stage ul.stage-list li:not(:last-child){
+	padding-right:6rem;
+	margin-right:6rem;
+	position:relative;
+}
+#sign_stage ul.stage-list li:not(:last-child):before{
+	content:'';
+	position:absolute;
+	top:50%;
+	right:-2rem;
+	transform:translateY(-50%);
+	width:4.5rem;
+	height:0.6rem;
+	background: url('stage_arrow.png') no-repeat center / contain;
+}
+#sign_stage ul.stage-list li .circle{
+	width:5rem;
+	height:5rem;
+	border-radius:50%;
+	background-color:#a5a5a5;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	color:#fff;
+	margin-right:1rem;
+}
+#sign_stage ul.stage-list li p{
+	color:#a5a5a5;
+	font-size:1.8rem;
+}
+#sign_stage ul.stage-list li .circle.prev span{
+	display:none;
+	/* width:2.2rem;
+	height:1.7rem;
+	background: url('stage_prev.png') no-repeat center / contain; */
+}
+#sign_stage ul.stage-list li .circle.prev{
+	width:5rem;
+	height:5rem;
+	background: #f1f1f1  url('stage_prev.png') no-repeat center;
+}
+#sign_stage ul.stage-list li .circle.on{
+	background-color:#000;
+	color:#fff;
+}
+#sign_stage ul.stage-list li p.on{
+	color:#000;
+	font-family:'NSKM';
+}
+
+        /*회원가입 테이블*/
+ul.signup_table{
+	border-top:2px solid #000;
+}
+.sign_list ul.signup_table li{
+	display:flex;
+	border-bottom:1px solid #d1d1d1;
+}
+.sign_list ul.signup_table li.id .field, 
+.sign_list ul.signup_table li.email .field,
+.sign_list ul.signup_table li.company_info .field,
+.sign_list ul.signup_table li.company_number .field
+{
+	padding:2rem 3rem;
+}
+.sign_list ul.signup_table li:not(li.password, li.company_info, li.id, li.email, li.company_number){
+	height:8rem;
+}
+
+.sign_list h3{
+	font-family:'NSKM';
+	font-size:2rem;
+	color:#000;
+	margin-bottom:2rem;
+}
+ul.signup_table li .title_box{
+	width:24.5%;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	font-size:1.6rem;
+	font-family:'NSKM';
+	text-align:center;
+	flex-direction:column;
+	flex-shrink:0;
+	background-color:#f8f8f8;
+	
+}
+ul.signup_table li .field{
+	padding:0 3rem 0;
+	display:flex;
+	width:75.5%;
+	flex-wrap:wrap;
+	align-items:center;
+}
+ul.signup_table li .field.password{
+	display:block;
+	padding:2rem 3rem;
+} 
+
+ul.signup_table li .field.file .upload-name{
+	 display: inline-block;
+	 width: 21.5rem;
+	 height:4.5rem;
+	 vertical-align: middle;
+	 padding: 0 1.5rem;
+	 border:1px solid #d1d1d1;
+	 color:#909090;
+	 font-family:'NSKR';
+	 font-size:1.5rem;
+}
+ul.signup_table li .field.file label{
+	 display: inline-block;
+	 padding:1.4rem;
+	 color:#000;
+	 margin-right:0;
+	 border:1px solid #000;
+	 background-color:#fff;
+	 cursor:pointer;
+}
+
+ul.signup_table li .field.file input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+
+}
+
+ul.signup_table li input[type="text"],
+ul.signup_table li input[type="password"]
+{
+	width:30rem;
+	padding:0 1.5rem;
+	height:4.5rem;
+	font-size:1.5rem;
+	border:1px solid #d1d1d1;
+
+}
+ul.signup_table li .field .check{
+	width:7.5rem;
+	height:4.6rem;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	border:1px solid #000;
+	margin:0 2rem;
+}
+ul.signup_table li .field .check a{
+	color:#333;
+	font-size:1.5rem;	
+}
+ul.signup_table li .field p.description{
+	font-size:1.6rem;
+	color:#333;
+}
+ul.signup_table li .division2{
+	margin-top:2rem;
+}
+ul.signup_table li  p.description2{
+	font-size:1.5rem;
+	line-height:2.4rem;
+	color:#909090;
+}
+ul.signup_table li .field span.mail{
+	margin:0 2rem;
+}
+ul.signup_table li .field input[type="radio"]{
+	margin-right:1rem;
+}
+ul.signup_table li .field label{
+	margin-right:4rem;
+}
+ul.signup_table li .title_box p.ask.essential {
+	position:relative;
+} 
+ul.signup_table li .title_box p.ask.essential:before{
+	content:'*';
+	position:absolute;
+	left:-10px;
+	top:2px;
+	font-size:12px;
+	color:red;
+}
+/*기업 회원정보 테이블*/
+.sign_list.company{
+	margin-top:10rem;
+}
+.sign_list.company li.company_info .field .write{
+	width:100%;
+}
+.sign_list.company li.company_info .field .write .content{
+	border:1px solid #d1d1d1;
+	position:relative;
+}
+.sign_list.company li.company_info .field .write .content textarea{
+	width:100%;
+	padding:1.5rem;
+	height:18rem;
+	border:none;
+	overflow-y:auto;
+	position:relative;
+	background-color:transparent;
+	font-size: 1.5rem;
+}
+/*기업회원가입 본인확인*/
+.sign_list.company{
+	margin-top:6rem;
+}
+
+#menu_description p.notice.company{
+	padding:2.5rem 0;
+}
+.sign_list.company li .field input.number{
+	width:9.5rem;
+}
+.sign_list.company li .field span.dash{
+	margin:0 1rem;
+}
+
+@media screen and (max-width: 860px) {
+	ul.signup_table li .field span.mail{
+		margin:0;
+	}
+	ul.signup_table li .field input.email{
+		width: calc((100% - 2rem) / 2);
+	}
+	#sign_stage ul.stage-list li:not(:last-child){
+		padding-right:3rem;
+		margin-right:3rem;
+	}
+}	
+/* 태블릿 - 스마트폰 */
+@media screen and (max-width: 768px) {
+	ul.signup_table li .field{
+		padding:1rem;
+	}
+	.sign_list ul.signup_table li.id .field, 
+	.sign_list ul.signup_table li.email .field,
+	.sign_list ul.signup_table li.company_info .field,
+	.sign_list ul.signup_table li.company_number .field
+	{
+		padding:1rem;
+	}
+	ul.signup_table li .field.password{
+		padding:1rem;
+	} 
+	ul.signup_table li .field .check{
+		margin:0;
+	}
+	ul.signup_table li .field p.description{
+		line-height:2.4rem;
+	}
+
+}
+@media screen and (max-width: 620px){
+	#sign_stage ul.stage-list li p{
+		font-size:1.3rem;
+	}
+	#sign_stage ul.stage-list li .circle{
+		width:3.5rem;
+		height:3.5rem;
+	}
+	#sign_stage ul.stage-list li .circle.prev{
+		width:3.5rem;
+		height:3.5rem;
+	}
+	#sign_stage ul.stage-list li:not(:last-child):before{
+		width:3.5rem;
+	}
+	.field .check2{
+		margin-left:0;
+		margin-top:1rem;
+	}
+	.sign_list.company li .field input.number{
+		width: calc((100% - 5rem) / 3);
+	}
+}
+/* 스마트폰 */
+@media screen and (max-width: 480px) {
+	#sign_stage ul.stage-list li p{
+		font-size:1.8rem;
+	}
+	#sign_stage ul.stage-list li .circle{
+		display:none;
+	}
+	.method_wrapper .method_list ul{
+		display:block;
+		margin:0;
+	}
+	.method_wrapper .method_list ul li{
+		width:100%;
+		margin:0;
+		margin-bottom:2rem;
+	}
+	.method_wrapper .ps_txt p{
+		line-height:2.5rem;
+		font-size:1.6rem;
+	}
+
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="sub_title">
+            <h3>기업 회원가입</h3>
+        </div>
+    
+        <div id="sign_stage">
+            <div>
+                <ul class="stage-list">
+                    <li>
+                        <div class="circle prev"><span>1</span></div>
+                        <p class="prev">약관동의</p>
+                    </li>
+                    <li>
+                        <div class="circle prev"><span>2</span></div>
+                        <p class="prev">본인확인</p>
+                    </li>
+                    <li>
+                        <div class="circle on"><span>3</span></div>
+                        <p class="on">회원정보입력</p>
+                    </li>
+                    <li>
+                        <div class="circle"><span>4</span></div>
+                        <p>가입완료</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="signup_wrapper">
+            <div class="sign_list">
+                <h3>회원정보</h3>
+                <form>
+                <ul class="signup_table">
+                    <li class="id">
+                        <div class="title_box">
+                            <p class="ask essential">아이디</p>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="name" id="name" placeholder="아이디 띄어쓰기 없이 영문/숫자 6-10자">
+                            <div class="check">
+                                <a href="">중복확인</a>
+                            </div>
+                            <p class="description">띄어쓰기 없이 영/숫자 6-10자 아이디를 입력하세요.</p>
+                        </div>
+                        
+                    </li>
+                    <li class="password">
+                        <div class="title_box">
+                            <p class="ask essential">비밀번호</p>
+                        </div>
+                        <div class="field password">
+                            <input type="password" name="napassword" id="password" placeholder="비밀번호(필수)">
+                            <div class="division2">
+                                <p class="description2">- 최소한 하나 이상의 숫자/영문자/특수문자를 포함해야 합니다.</p>
+                                <p class="description2">- 사용가능한 특수문자는 [!@#$%^&*] 입니다.</p>
+                            <div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="title_box">
+                            <p class="ask essential">비밀번호</p>
+                        </div>
+                        <div class="field">
+                            <input type="password" name="password" id="password" placeholder="비밀번호확인(필수)">
+                        </div>	
+                    </li>
+                    <li>
+                        <div class="title_box">
+                            <p class="ask">기업명</p>
+                        </div>
+                        <div class="field">
+                            <p class="answer">패션랜드</p>
+                        </div>	
+                    </li>
+                    <li>
+                        <div class="title_box">
+                            <p class="ask">사업자등록번호</p>
+                        </div>
+                        <div class="field">
+                            <p class="answer">204-86-06861</p>
+                        </div>	
+                    </li>
+                    <li class="essential">
+                        <div class="title_box">
+                            <p class="ask">담당자명</p>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="charge" id="charge" placeholder="담당자명(필수)">
+                        </div>	
+                    </li>
+                    <li>
+                        <div class="title_box">
+                            <p class="ask">핸드폰</p>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="phone" id="phone" placeholder="연락처-없이 입력">
+                        </div>	
+                    </li>		
+                    <!-- <li>
+                        <div class="title_box">
+                            <p class="ask">연락처</p>
+                        </div>
+                        <div class="field">
+                            <div class="division">
+                                <select id="phone1" class="phone1">
+                                    <option value="010">010</option>
+                                    <option value="011">011</option>
+                                    <option value="017">017</option>
+                                    <option value="016">016</option>
+                                    <option value="019">019</option>
+                                </select>
+                                <input type="text" name="phone2" id="phone2" placeholder="">
+                                <input type="text" name="phone3" id="phone3" placeholder="">
+                            </div>
+                            <div class="division2">
+                                <p class="description">답변을 받으실 연락처를 적어주세요</p>
+                            </div>
+                        </div>
+                    </li> -->
+                    <li class="email">
+                        <div class="title_box">
+                            <p class="ask essential">이메일</p>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="email" id="email" class="email" placeholder="이메일주소입력(ID)">
+                            <span class="mail">@</span>
+                            <input type="text" name="email" id="email" class="email" placeholder="이메일주소입력(도메인)">
+                            <!-- <select name="emaildo" id="emaildo" class="email">
+                                <option value="">직접입력</option>
+                                <option value="naver.com">naver.com</option>
+                                <option value="daum.net">daum.net</option>
+                                <option value="hanmail.net">hanmail.net</option>
+                                <option value="google.com">google.com</option>
+                            </select> -->
+                        </div>
+                    </li>
+                    <li>
+                        <div class="title_box">
+                            <p class="ask">전화번호</p>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="phone2" id="phone2" placeholder="대표 전화번호">
+                        </div>	
+                    </li>
+                    <li>
+                        <div class="title_box">
+                            <p class="ask">팩스 전화번호</p>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="fax" id="fax" placeholder="팩스번호">
+                        </div>	
+                    </li>
+                    <li>
+                        <div class="title_box">
+                            <p class="ask">기업로고</p>
+                        </div>
+                        <div class="field file">
+                             <label for="file">파일찾기</label> 
+                             <input class="upload-name" value="첨부파일" placeholder="첨부파일">
+                             <input type="file" id="file">
+                        </div>	
+                    </li>
+                    <li>
+                        <div class="title_box">
+                            <p class="ask">이메일수신</p>
+                        </div>
+                        <div class="field">
+                            <label class="radio-label">
+                                <input type="radio" name="receive" checked="checked" class="visibility-hidden">
+                                <span class="custom-radio"></span>
+                                <span class="radio-txt">메일을 받지않겠습니다.</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="receive" class="visibility-hidden">
+                                <span class="custom-radio"></span>
+                                <span class="radio-txt">메일을 받겠습니다.</span>
+                            </label>
+                        </div>	
+                    </li>
+                    <li>
+                        <div class="title_box">
+                            <p class="ask">문자수신</p>
+                        </div>
+                        <div class="field">
+                            <label class="radio-label">
+                                <input type="radio" name="receive2" checked="checked" class="visibility-hidden">
+                                <span class="custom-radio"></span>
+                                <span class="radio-txt">문자를 받지않겠습니다.</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="receive2" class="visibility-hidden">
+                                <span class="custom-radio"></span>
+                                <span class="radio-txt">문자를 받겠습니다.</span>
+                            </label>
+                        </div>	
+                    </li>
+                </ul>
+                </form>
+            </div>
+    
+            <div class="sign_list company">
+                <h3>기업 회원정보</h3>
+                <form>
+    
+                <ul class="signup_table">
+                    <li>
+                        <div class="title_box">
+                            <p class="ask">업종</p>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="kind" id="kind" placeholder="">
+                        </div>
+                        
+                    </li>
+                    <li>
+                        <div class="title_box">
+                            <p class="ask">생산품목</p>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="item" id="item" placeholder="">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="title_box">
+                            <p class="ask">대표자명</p>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="name" id="name" placeholder="">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="title_box">
+                            <p class="ask">종업원수</p>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="employee" id="employee" placeholder="">
+                        </div>
+                    </li>
+                    <li class="company_info">
+                        <div class="title_box">
+                            <p class="ask">기업소개</p>
+                        </div>
+                        <div class="field">
+                            <div class="write">
+                                <div class="content">
+                                    <textarea name="content" id="content"></textarea>
+                                </div>
+                            </div>
+                        </div>	
+                    </li>
+                    <li>
+                        <div class="title_box">
+                            <p class="ask">홈페이지</p>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="homepage" id="homepage" placeholder="">
+                        </div>
+                    </li>
+                </ul>
+                </form>
+            </div>
+    
+            <div class="btn-black">
+                <a href="" title="">기업완료</a>
+            </div>
+        </div>
+    
+    
+    </div>
+    <script>
+        $(function(){
+           $("#file").on('change',function(){
+             var fileName = $("#file").val();
+             $(".upload-name").val(fileName);
+           });
+        });
+           
+       </script>
+</body>
+</html>
