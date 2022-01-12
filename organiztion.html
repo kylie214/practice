@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Document</title>
+    <style>
+     .orgnz-chart {
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto;
+        font-size: 1.8rem;
+    }
+    .orgnz-chart .head {
+        height: 6rem;
+        background-color: #f8f8f8;
+        display: flex;
+        align-items: center;
+        border: 1px solid #d1d1d1;
+        cursor: pointer;
+        padding: 0 4rem;
+        user-select: none;
+        position: relative;
+    }
+    .orgnz-chart .head:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 4rem;
+        width: 10px;
+        height: 6px;
+        background: url('select.png') no-repeat center;
+        transform:translateY(-50%) rotateX(180deg);
+    }
+    .orgnz-chart .head.on:after {
+        transform: translateY(-50%) rotateX(0);	
+    }
+    .orgnz-chart .director {
+        width: 310px;
+        max-width: 100%;
+        margin: 0 auto;
+        position: relative;
+    }
+    .orgnz-chart .director:after {
+        content: '';
+        position: absolute;
+        width: 1px;
+        height: 24rem;
+        border-right: 1px solid #d1d1d1;
+        left: 50%;
+        bottom: 0;
+        transform: translateY(100%);
+    }
+    .orgnz-chart .director .head {
+        justify-content: center;
+    }
+    .director .staff {
+        height: 6rem;
+        border-bottom: 1px solid #d1d1d1;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .orgnz-chart .w360 {
+        margin: 8rem auto 10rem;
+        display: flex;
+        justify-content: flex-end;
+        position: relative;
+    }
+    .orgnz-chart .w360:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 38.7%;
+        width: calc(50% - 38.7%);
+        height: 1px;
+        border-bottom: 1px solid #d1d1d1;
+    }
+    .orgnz-chart .w360 .head {
+        width: 38.7%;
+        position: relative;
+    }
+    .orgnz-chart .w360 .head:after {
+        display: none;
+    }
+    .team-list .staff li {
+        display: flex;
+        height: 6rem;
+        border-bottom: 1px solid #d1d1d1;
+        align-items: center;
+        font-size: 1.6rem;
+    }
+    .team-list .position {
+        width: 16.6rem;
+        text-align: center;
+        flex-shrink: 0;
+    }
+    .team-list .name {
+        width:  11.6rem;
+        text-align: center;
+        flex-shrink: 0;
+    }
+    .team-list .year {
+        width: 16rem;
+        text-align: center;
+        flex-shrink: 0;
+    }
+    .team-list .role {
+        flex-grow: 1;
+        padding-left: 3rem;
+        padding-right: 1rem;
+        word-break: keep-all;
+    }
+    .team-list .team:not(:first-child) .head {
+        border-top: 0;
+    }
+    .team-list .team:not(:first-child) .staff {
+        display: none;
+    }
+    .table-type6 {
+        width: 100%;
+    }
+    .table-type6 th {
+        background-color: #f8f8f8;
+        border: 1px solid #d1d1d1;
+        padding: 1rem;
+        font-size: 1.8rem;
+        font-family: 'NSKM';
+    }
+    .table-type6 td {
+        border: 1px solid #d1d1d1;
+        text-align: center;
+        height: 12rem;
+        padding: 1.8rem 1rem;
+        font-size: 1.6rem;
+    }
+    .table-type6 .align-left {
+        text-align: left;
+        padding-left: 4rem;
+    }
+    .table-type6 img {
+        max-width: 100%;
+    }
+    .table-type6 p:not(:last-child) {
+        margin-bottom: 1.5rem;
+    }
+    .partner-col1 {
+        width: 8rem;
+    }
+    .partner-col2 {
+        width: 32rem;
+    }
+    .partners h4 {
+        font-size: 2.4rem;
+        font-family: 'NSKM';
+        margin-bottom: 3.5rem;
+    }
+
+
+    </style>
+</head>
+<body>
+ 
+
+<!-- 공통 네비게이션 -->
+<div class="nav-container">
+	<div class="container">
+		<ul class="navigation">
+			<li class="home">
+				<a href="{MARI_HOME_URL}/?mode=main" title="홈으로">
+					<img src="{MARI_HOMESKIN_URL}/img/home.png" alt="홈">
+				</a>
+			</li>
+			<li class="depth one-depth">
+				<a href="javascript:;" class="selected">
+					<span>조직도</span>
+					<img src="{MARI_HOMESKIN_URL}/img/navi-arrow.png" class="arrow" alt="화살표">
+				</a>
+				<div class="option">
+					<a href="{MARI_HOME_URL}/?mode=notice1">
+						<span>공지사항</span>
+					</a>
+					<a href="{MARI_HOME_URL}/?mode=news">
+						<span>보도자료</span>
+					</a>
+					<a href="{MARI_HOME_URL}/?mode=center">
+						<span>센터소개</span>
+					</a>
+					<a href="{MARI_HOME_URL}/?mode=history">
+						<span>연혁</span>
+					</a>
+					<a href="{MARI_HOME_URL}/?mode=organization">
+						<span>조직도</span>
+					</a>
+					<a href="{MARI_HOME_URL}/?mode=partners">
+						<span>PARTNERS</span>
+					</a>
+					<a href="{MARI_HOME_URL}/?mode=direction">
+						<span>찾아오시는길</span>
+					</a>
+				</div>
+			</li>
+		</ul>
+
+		<!-- 프린트 -->
+		<a href="javascript:;" title="프린트 하기" class="btn-print"></a>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function(){
+		$('.navigation .selected').click(function(){
+			$(this).find('.arrow').toggleClass('on');
+			$(this).closest('li').siblings('li').find('.arrow').removeClass('on');
+
+			$(this).next('.option').toggle();
+			$(this).closest('li').siblings('li').find('.option').hide();
+		});
+
+		$('.navigation .option a').click(function(){
+			var value = $(this).text();
+			$(this).closest('.option').hide();
+			$(this).closest('.option').prev('.selected').find('span').text(value);
+			$(this).closest('.option').prev('.selected').find('.arrow').removeClass('on');
+		});
+	});
+</script>
+
+<section id="sub-content">
+	<div class="container introduce">
+		<div id="sub_title">
+			<h3>센터조직도</h3>
+		</div>
+		<div class="organization">
+			<div class="orgnz-chart">
+				<div class="director">
+					<div class="head on">
+						<p class="title">센터장</p>
+					</div>
+					<div class="staff">
+						<p class="name">전정환</p>
+						<p class="year">1901</p>
+						<p class="role">센터 업무 총괄</p>
+					</div>
+				</div>
+				<div class="w360">
+					<div class="head">
+						<p class="title">W360 센터</p>
+					</div>
+				</div>
+				<div class="team-list">
+					<div class="team">
+						<div class="head on">
+							<p class="title">사업전략팀</p>
+						</div>
+						<ul class="staff">
+							<li>
+								<p class="position">팀장</p>
+								<p class="name">이정원</p>
+								<p class="year">1920</p>
+								<p class="role">사업전략팀 업무 총괄</p>
+							</li>
+							<li>
+								<p class="position">선임</p>
+								<p class="name">김철성</p>
+								<p class="year">1903</p>
+								<p class="role">전략 수립, 성과관리, 대외협력</p>
+							</li>
+							<li>
+								<p class="position">사원</p>
+								<p class="name">차지연</p>
+								<p class="year">1920</p>
+								<p class="role">언론 홍보, 매거진 발간, 출판</p>
+							</li>
+							<li>
+								<p class="position">사원</p>
+								<p class="name">박윤혁</p>
+								<p class="year">1922</p>
+								<p class="role">소셜 미디어 홍보, 홍보 콘텐츠 제작</p>
+							</li>
+						</ul>
+					</div>
+					<div class="team">
+						<div class="head">
+							<p class="title">경영지원팀</p>
+						</div>
+						<ul class="staff">
+							<li>
+								<p class="position">팀장<p>
+								<p class="name">김미혜</p>
+								<p class="year">1910</p>
+								<p class="role">겅영지원팀 업무 총괄</p>
+							</li>
+							<li>
+								<p class="position">선임<p>
+								<p class="name">송영경</p>
+								<p class="year">1911</p>
+								<p class="role">인사, 이사회 운영, 규정•지침</p>
+							</li>
+							<li>
+								<p class="position">전임<p>
+								<p class="name">홍가휘</p>
+								<p class="year">1954</p>
+								<p class="role">예산 운영 및 지출</p>
+							</li>
+							<li>
+								<p class="position">사원<p>
+								<p class="name">양승연</p>
+								<p class="year">1912</p>
+								<p class="role">회계 및 사업비 정산</p>
+							</li>
+							<li>
+								<p class="position">사원<p>
+								<p class="name">박윤미</p>
+								<p class="year">1900</p>
+								<p class="role">계약업무</p>
+							</li>
+							<li>
+								<p class="position">사원<p>
+								<p class="name">김현지</p>
+								<p class="year">1980</p>
+								<p class="role">W360 운영 및 시설 관리</p>
+							</li>
+						</ul>
+					</div>
+					<div class="team">
+						<div class="head">
+							<p class="title">액셀러레이팅팀</p>
+						</div>
+						<ul class="staff">
+							<li>
+								<p class="position">팀장</p>
+								<p class="name">김희정</p>
+								<p class="year">1930</p>
+								<p class="role">액셀러레이팅팀 업무 총괄</p>
+							</li>
+							<li>
+								<p class="position">선임</p>
+								<p class="name">이한솔</p>
+								<p class="year">-</p>
+								<p class="role">(휴직)</p>
+							</li>
+							<li>
+								<p class="position">전임</p>
+								<p class="name">부지영</p>
+								<p class="year">1933</p>
+								<p class="role">시드머니 투자사업, 보육기업 액셀러레이팅</p>
+							</li>
+							<li>
+								<p class="position">전임</p>
+								<p class="name">진유라</p>
+								<p class="year">1921</p>
+								<p class="role">예비창업패키지, 보육기업 스케일업</p>
+							</li>
+							<li>
+								<p class="position">전임</p>
+								<p class="name">김성태</p>
+								<p class="year">1932</p>
+								<p class="role">개인투자조합, 보육기업 액셀러레이팅</p>
+							</li>
+							<li>
+								<p class="position">전임</p>
+								<p class="name">한효심</p>
+								<p class="year">1931</p>
+								<p class="role">보육기업 액셀러레이팅, 보육기업 스케일업</p>
+							</li>
+							<li>
+								<p class="position">사원</p>
+								<p class="name">김용태</p>
+								<p class="year">1981</p>
+								<p class="role">예비창업패키지</p>
+							</li>
+							<li>
+								<p class="position">사원</p>
+								<p class="name">박진솔</p>
+								<p class="year">1981</p>
+								<p class="role">예비창업패키지</p>
+							</li>
+						</ul>
+					</div>
+					<div class="team">
+						<div class="head">
+							<p class="title">혁신창업기반팀</p>
+						</div>
+						<ul class="staff">
+							<li>
+								<p class="position">팀장</p>
+								<p class="name">이경호</p>
+								<p class="year">1950</p>
+								<p class="role">혁신창업기반팀 업무 총괄</p>
+							</li>
+							<li>
+								<p class="position">선임</p>
+								<p class="name">임경희</p>
+								<p class="year">1956</p>
+								<p class="role">로컬브랜딩스쿨, 로컬게더링</p>
+							</li>
+							<li>
+								<p class="position">전임</p>
+								<p class="name">권록단</p>
+								<p class="year">1953</p>
+								<p class="role">로컬크리에이터 활성화 지원</p>
+							</li>
+							<li>
+								<p class="position">전임</p>
+								<p class="name">서재준</p>
+								<p class="year">1935</p>
+								<p class="role">리노베이션스쿨</p>
+							</li>
+							<li>
+								<p class="position">전임</p>
+								<p class="name">안영주</p>
+								<p class="year">1934</p>
+								<p class="role">블록체인 비즈니스 캠프, 카카오클래스</p>
+							</li>
+							<li>
+								<p class="position">전임</p>
+								<p class="name">황은정</p>
+								<p class="year">1984</p>
+								<p class="role">로컬크리에이터 활성화 지원</p>
+							</li>
+							<li>
+								<p class="position">사원</p>
+								<p class="name">이지은</p>
+								<p class="year">1952</p>
+								<p class="role">J-Connect Day, 원스톱서비스, CIRI</p>
+							</li>
+							<li>
+								<p class="position">사원</p>
+								<p class="name">최소영</p>
+								<p class="year">1951</p>
+								<p class="role">공공혁신 아카데미, J-Academy</p>
+							</li>
+							<li>
+								<p class="position">사원</p>
+								<p class="name">송민경</p>
+								<p class="year">1976</p>
+								<p class="role">로컬크리에이터 활성화 지원</p>
+							</li>
+							<li>
+								<p class="position">사원</p>
+								<p class="name">황윤경</p>
+								<p class="year">1975</p>
+								<p class="role">로컬크리에이터 활성화 지원</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	$(function(){
+		$('.orgnz-chart .head').click(function(){
+			$(this).closest('.team').siblings('.team').find('.staff').slideUp(300);
+			$(this).next('.staff').slideToggle(300);
+			$(this).closest('.team').siblings('.team').find('.head').removeClass('on');
+			$(this).toggleClass('on');
+		});
+	});
+</script>
+
+
+
+</body>
+</html>
