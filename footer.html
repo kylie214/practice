@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: calc(1300px + 180px);
+            padding: 0 80px;
+            max-width: 100%;
+            margin:0 auto;
+
+        }
+        footer {
+	background-color: #f2f2f2;
+}
+footer .grid1 {
+	height: 8rem;
+	border-bottom: 1px solid #dcdcdc;
+}
+footer .grid1 .container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 100%;
+}
+.terms-list {
+	display: flex;
+}
+.terms-list li:not(:last-child) {
+	margin-right: 3rem;
+	padding-right: 3rem;
+	position: relative;
+}
+.terms-list li:not(:last-child):after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%);
+	width: 1px;
+	height: 1.6rem;
+	background-color: #666666;
+}
+.terms-list a {
+	color: #666666;
+	font-size: 1.6rem;
+}
+.terms-list a.policy {
+	font-family: 'NSKB';
+	color: #777777;
+}
+.family-site {
+	width: 21rem;
+	height: 4.5rem;
+	border: 1px solid #909090;
+	color: #777777;
+	font-size: 1.5rem;
+	background: transparent url('../img/drop.png') no-repeat right 1rem center;
+	padding-left: 1rem;
+}
+footer .grid2 {
+	padding-top: 3rem;
+	padding-bottom: 3.4rem;
+	font-size: 1.4rem;
+	color: #777777;
+}
+footer .grid2 .container {
+	display: flex;
+	justify-content: space-between;
+}
+footer .address {
+	margin-top: 2.5rem;
+	line-height: 2.8rem;
+}
+footer .address li:not(:last-child) {
+	margin-bottom: 2rem;
+}
+footer .contact {
+	color: #777777;
+}
+footer .contact li:not(:last-child) {
+	margin-bottom: 4rem;
+}
+footer .contact .title {
+
+}
+footer .contact .number {
+	font-size: 2.6rem;
+	font-family: 'MSM';
+	margin-top: 1.4rem;
+}
+#btn-top {
+	background-color: #fff;
+	position: fixed;
+	bottom: 10rem;
+	right: calc((100% - 130rem) / 2);
+	margin-right: -6rem;
+	transform: translateX(100%);
+	opacity: 0;
+	transition: opacity 0.2s ease;
+	width: 6rem;
+	height: 6rem;
+	border-radius: 50%;
+	border: 1px solid #d2d2d2;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-family: 'MSR';
+	font-size: 1.4rem;
+	letter-spacing: 0;
+	z-index: 2;
+}
+#btn-top:hover {
+	/* opacity: 1 !important; */
+}
+#btn-top span {
+	margin-top: 0.4rem;	
+}
+
+/* 미디어쿼리 */
+
+/* max width */
+@media screen and (max-width: 1660px) {
+
+}
+/* 제주 컨테이너 */
+@media screen and (max-width: 1300px) {
+	#btn-top {
+		transform: translateX(0);
+		margin-right: 0;
+		bottom: 3rem;
+		right: 2rem;
+	}
+}
+/* 넷북 - 태블릿 */
+@media screen and (max-width: 1024px) {
+
+}
+/* 태블릿 - 스마트폰 */
+@media screen and (max-width: 768px) {
+	footer .grid2 .container {
+		display: block;
+	}
+	footer .contact {
+		margin-top: 4rem;
+	}
+	footer .grid1 {
+		height: 12rem;
+	}
+	footer .grid1 .container {
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: center;
+	}
+	.terms-list li:not(:last-child) {
+		margin-right: 2rem;
+		padding-right: 2rem;
+	}
+	.family-site {
+		width: 100%;
+		margin-top: 1.6rem;
+		height: 4rem;
+	}
+}
+/* 스마트폰 */
+@media screen and (max-width: 480px) {
+
+}
+/* 스마트폰 */
+@media screen and (max-width: 320px) {
+
+}
+
+    </style>
+</head>
+<body>
+    <footer>
+		<div class="grid grid1">
+			<div class="container">
+				<ul class="terms-list">
+					<li>
+						<a href="javascript:;" title="이용약관">이용약관</a>
+					</li>
+					<li>
+						<a href="javascript:;" title="개인정보처리방침" class="policy">개인정보처리방침</a>
+					</li>
+				</ul>
+				
+			</div>
+		</div>
+		<div class="grid grid2">
+			<div class="container">
+				<address>
+					<div class="footer-logo">
+						<img src="{MARI_HOMESKIN_URL}/img/footer-logo.png" alt="제주창조경제혁신센터">
+					</div>
+					<ul class="address">
+						<li>
+							<p>제주창조경제혁신센터 [690-787] 제주특별자치도 제주시 중앙로 217 (이도이동) 제주벤처마루 3~4F</p>
+							<p>Tel : 064-710-1900     Fax : 064-710-1918</p>
+							<p>본 사이트는Internet Explorer 9.0이상, 해상도 1920x1080에 최적화 되어 있습니다.</p>
+						</li>
+						<!--<li>
+							<p>Copyright (c) 제주창조경제혁신센터. All rights reserved.</p>
+							<p>(단, 지역혁신팀 아카이빙 코너에는 크리에이티브커먼즈 라이선스가 적용됩니다.)</p>
+						</li>-->
+					</ul>
+				</address>
+				<ul class="contact">
+					<li>
+						<p class="title">프로그램 문의</p>
+						<p class="number">064-710-1900</p>
+					</li>
+					<li>
+						<p class="title">시스템문의</p>
+						<p class="number">02-6956-0678</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<button type="button" id="btn-top">
+			<img src="{MARI_HOMESKIN_URL}/img/gotop-arrow.png" alt="탑버튼">
+			<span>TOP</span>
+		</button>
+	</footer>
+</div> <!-- wrap close -->
+
+<script>
+	$(function(){
+		$('#btn-top').click(function(){
+			$('body, html').animate({scrollTop : 0}, 200);
+		});
+	});
+
+	$(window).scroll(function(){
+		if ($(window).scrollTop() > 0)
+		{
+			$('#btn-top').css('opacity', 0.4);
+		}
+		else
+		{
+			$('#btn-top').css('opacity', 0);
+		}
+	});
+</script>
+</body>
+</html>
