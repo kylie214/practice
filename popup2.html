@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*신청정보 수정 팝업*/
+.modal{
+	width:100%;
+	height:100%;
+	background-color: rgba(0,0,0,0.6);
+	position: fixed;
+	top:0;
+	left:0;
+	z-index:9999;
+	/* display:none; */
+
+}
+.apply_popup-c{
+	position: fixed;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	z-index:9999;
+	width:auto;
+	overflow-y:auto;
+	max-height:calc(100% - 80px);
+	max-width: calc(100% - 80px);
+	background-color:#fff;
+	/* display:none; */
+
+}
+.popup-c-head{
+	background-color: #303030;
+	color:#fff;
+	width:100%;
+	height: 9rem;
+	font-size:2.4rem;
+	text-align:center;
+	line-height:9rem;
+	position:relative;
+}
+
+.popup-c-head a{
+	position:absolute;
+	right:20px;
+	top:0;
+}
+.popup-c-head a img{
+	max-width:100%;
+}
+.popup-c-body{
+	padding:0 4rem 4rem;
+}
+.apply_popup-c p.ask_info{
+	margin-top:4rem;
+	padding:0 4rem;
+	font-size:1.6rem;
+	font-family:'NSKR';
+	text-align:center;
+
+}
+.popup-c-body #sub_intro .intro_title p{
+	font-size:2rem;
+	font-family:'NSKB';
+}
+.popup-c-body #sub_intro .intro_title span{
+	font-size:2rem;
+	font-family:'NSKM';
+	margin-left:2rem;
+}
+
+.table-type1.apply{
+	border: 1px solid #e8e8e8;
+	margin:2rem 0;
+}
+.table-type1.apply input{
+	border:1px solid #d1d1d1;
+	height:4.5rem;
+	width: 30rem;
+	padding:0 1rem;;
+	max-width:100%;
+}
+.table-type1.apply input.password:not(:nth-of-type(2)){
+	margin-right:1.5rem;
+}
+.table-type1.apply input.email{
+	width: 22.2rem;
+	max-width:100%;
+}
+.table-type1.apply span.at{
+	margin:0 1rem;
+}
+.table-type1.apply p{
+	font-family:'NSKR';
+	font-size:1.5rem;
+}
+.table-type1.apply th p{
+	font-family:'NSKM';
+	font-size:1.6rem;
+}
+.table-type1.apply th p.essential{
+	position:relative;
+	display:inline-block;
+}
+.table-type1.apply th p.essential:before{
+	position:absolute;
+	content:'*';
+	top:1px;
+	left:-7px;
+	font-size:12px;
+	color:red;
+}
+
+article.crclm13{
+	margin-top:6rem;
+}
+.survey_wrapper{
+	border:1px solid #d1d1d1;
+	padding: 4rem;
+	margin-top:3rem;
+}
+.survey_wrapper input[type='text']{
+	border:1px solid #d1d1d1;
+	width:100%;
+	padding:1.5rem;
+}
+.survey_wrapper .survey1,
+.survey2, .survey3, .survey4
+{
+	margin-bottom:4rem;
+}
+.survey_wrapper .survey1 p,
+.survey_wrapper .survey3 p
+{
+	font-family:'NSKM';
+	font-size:1.8rem;
+	line-height:2.6rem;
+	margin-bottom:2rem;
+}
+.survey_wrapper .survey1 label{
+	font-size:1.6rem;
+	font-family:'NSKM';
+	margin-right:3rem;
+}
+.survey_wrapper .survey2 p,
+.survey_wrapper .survey4 p
+{
+	font-family:'NSKM';
+	font-size:1.8rem;
+	line-height:2.6rem;
+}
+.survey_wrapper .survey2 p:last-of-type,
+.survey_wrapper .survey4 p:last-of-type
+{
+	font-size:1.6rem;
+	font-family:'NSKR';
+	margin: 1.5rem 0 2rem;
+}
+.confirm-box-c{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	text-align:center;
+	margin:4rem 0 4rem ;
+}
+.confirm-box-c a.confirm-c{
+	width:20rem;
+	height:6rem;
+	background-color:#fff;
+	color: #000;
+	border:1px solid #000;
+	line-height:6rem;
+	margin:0 0.5rem;
+	
+}
+.confirm-box-c a.cancel-c{
+	width:20rem;
+	height:6rem;
+	color:#fff;
+	line-height:6rem;
+	background-color: #000;
+	margin:0 0.5rem;
+}
+
+
+</style>
+</head>
+<body>
+    <!-- 팝업창 -->
+	<div class="modal"></div>
+    <div class="apply_popup-c">
+        <div class="popup-c-head">
+            <p>프로그램 신청정보 수정</p>
+            <a href="#" title="" class="popup-c-close"><img src="close.png" alt="" ></a>
+        </div>
+        <p class="ask_info">*신청내용의 확인이나 변경을 원하시는 경우에는 064-710-1900으로 문의 부탁 드립니다.</p>
+        <div class="popup-c-body">
+            <article class="crclm">
+                <div id="sub_intro">
+                    <div class="intro_title">
+                        <p>STEP 1</p> <span>신청자정보<span>
+                    </div>
+                    <div class="intro_red"></div>
+                </div>
+                <table class="table-type1 apply">		
+                    <colgroup>
+                        <col class="os-col22">
+                        <col class="os-col2">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th><p class="essential">기업(팀.기업)명</p></th>
+                            <td class="align-left">
+                                <div class="division">
+                                    <input type="text" placeholder="기업(팀.기업)명" id="name">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><p class="essential">전화번호</p></th>
+                            <td class="align-left">
+                                <div class="division">
+                                    <input type="text" placeholder="01090004222" id="phonenumber">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><p class="essential">이메일</p></th>
+                            <td class="align-left">
+                                <div class="division">
+                                    <input type="text" placeholder="jeju2022" id="email" class="email">
+                                    <span class="at">@</span>
+                                    <input type="text" placeholder="naver.com" id="email" class="email">
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    </table>
+                    <p>※수정 입력하신 개인정보는 회원정보에 반영되지 않습니다.</p>
+            </article>
+            
+            <article class="crclm13">
+                <div id="sub_intro">
+                    <div class="intro_title">
+                        <p>STEP 2</p> <span>프로그램 신청 질문(2021년 원스톱서비스 11월)<span>
+                    </div>
+                    <div class="intro_red"></div>
+                </div>
+                    <div class="survey_wrapper">
+                        <div class="survey1">
+                            <p>1P.  원스톱 서비스는 인사/노무, 특허, 창업,금융,법률 분야 운영 중입니다.<br>
+                            아래의 분야 중에서 예약 원하시는 상담분야는 무엇인가요?</p>
+                            <div class="pop_radio_select">
+                                <input type="radio" id="human" name="select1" value="human" checked="checked">
+                                <label for="human">인사/노무</label>
+                                <input type="radio" id="patent" name="select1" value="patent">
+                                <label for="patent">특허</label>
+                                <input type="radio" id="finance" name="select1" value="finance">
+                                <label for="finance">금융</label>
+                            </div>
+                        </div>
+                        <div class="survey2">
+                            <p>2P. 홈페이지의 원스톱서비스 상담일정을 확인하신 후,<br>원하시는 상담 예약 일정을 적어주시기 바랍니다.</p>
+                            <p>※작성형태 : 신청일시/ 신청시간 ◀ 두가지 꼭 작성 ( 참고예시 :  인사/노무:월 , 특허:화,  금융:목)</p>
+                            <input type="text" placeholder="테스트신청" id="text" >
+                        </div>
+                        <div class="survey3">
+                            <p>3P. 원스톱서비스 통해 신청 분야의 어떤 내용에 대해 상담 예정인지 적어주시기 바랍니다.</p>
+                            <input type="text" placeholder="테스트신청" id="text" >
+                        </div>
+                        <div class="survey4">
+                            <p>4P. 기업명이 있는 참여자 분은 기업명과 성함 각각 필히 작성해주세요.</p>
+                            <p>※예비창업자의 경우, 예비창업자로 명시</p>
+                            <input type="text" placeholder="테스트신청" id="text" >
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <div class="confirm-box-c">
+                <a href="javascript:;" class="confirm-c">취소</a>
+                <a href="javascript:;" class="cancel-c">수정</a>
+            </div>
+        </div>
+        
+    </div>
+
+    <script>
+        $(function(){
+            $('.application').click(function(){
+                //var n = $('.application').index(this);
+                $('.modal').fadeIn();
+                $('.apply_popup-c').show();
+            });
+    
+            $('.popup-c-close, .confirm-c').click(function(){
+                $('.modal').hide();
+                $('.apply_popup-c').hide();
+            });
+        });
+    </script>
+</body>
+</html>
