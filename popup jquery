@@ -1,0 +1,36 @@
+$(function(){
+	$('.collection').click(function(){
+		//var n = $('.application').index(this);
+		$('.modal').fadeIn();
+		$('.collection_popup').show();
+	});
+//클릭하면 모달 열리고 팝업창 보여줘라
+	$('.popup_close').click(function(){
+		$('.modal').hide();
+		$('.collection_popup').hide();
+	});
+});
+
+//닫기창 누르면 모달 숨기고 팝업창 닫아라
+
+
+// 탭메뉴 
+			//a태그 누르면 a있던 클래스 on 빼고 내가 누른 태그에 on 달아줘
+		$('.goods-tab2 a').click(function(){
+			$('.goods-tab2 a').removeClass('on');
+			$(this).addClass('on');
+    
+			
+      var n = $('.goods-tab2 a').index(this);
+
+			$('.board_tab').hide();
+			$('.board_tab').eq(n).show();
+			return false;
+		});
+    
+    //게시판 제목 누르면 관련 기사 나오기
+		$('.type1-newstitle').click(function(){
+			$(this).closest('tr').nextUntil('.default').toggle();
+		});
+
+    
