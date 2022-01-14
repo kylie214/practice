@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
+    <title>Document</title>
+</head>
+<style>
+    .main-visual {
+        margin-top: 8px;
+        position: relative;
+    }
+    .main-visual .slide {
+        position: relative;
+        height: 470px;
+    }
+    .main-visual .slide .container {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 100%;
+        padding-top: 88px;
+        z-index: 1;
+    }
+    .main-banner .slick-slide img {
+        display: initial;
+        height: 100%;
+    }
+    .main-visual .slide .title1 {
+        font-size: 40px;
+        color: #fff;
+        line-height: 50px;
+        font-family: 'NSKB';
+        word-break: keep-all;
+    }
+    .main-visual .slide .title2 {
+        font-size: 20px;
+        color: #fff;
+        word-break: keep-all;
+        margin-top: 12px;
+    }
+    .main-slide-control {
+        position: absolute;
+        left: 50%;
+        bottom: 150px;
+        transform: translateX(-50%);
+    }
+    .main-slide-control .control {
+        display: flex;
+    }
+    .main-slide-control .arrow-btn {
+        width: 13px;
+        height: 24px;
+        cursor: pointer;
+    }
+    .main-slide-control .main-prev {
+        background: url('arrow-prev.png') no-repeat center / contain;
+    }
+    .main-slide-control .main-next {
+        background: url('arrow-next.png') no-repeat center / contain;
+        margin-left: 4rem;
+    }
+    .slider-status {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        margin-left: 26px;
+    }
+    .slider-status .current {
+        font-family: 'PLAYB';
+        color: #fff;
+    }
+    .slider-status .total {
+        font-family: 'PLAYB';
+        color: rgba(255,255,255,0.3);
+    }
+    .slider-status .pagination {
+        width: 200px;
+        height: 2px;
+        background-color: rgba(255,255,255,0.3);
+        position: relative;
+        margin: 0 12px;
+    }
+    .slider-status .pagination:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: #fff;
+    }
+    .slider-status .pagination.on:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        animation: pagination 5s linear;
+    }
+    @keyframes pagination {
+        100% {
+            width: 100%;
+        }
+    }
+    .slider-status .pause {
+        width: 15px;
+        height: 15px;
+        background: url('pause1.png') no-repeat center;
+        cursor: pointer;
+        margin-left: 17px;
+    }
+    .slider-status .pause.play {
+        background-image: url('play1.png');
+    }
+</style>
+<body>
+    <div class="main-visual">
+        <div class="main-banner">
+            <div class="slide">
+                <img src="visual_banner02.png">
+                <div class="container">
+                    <div class="paragraph">
+                        <p class="title1">DEFI•ANT IS AVAILABLE 24 HOURS <br>ANYWHERE IN THE WORLD.</p>
+                        <p class="title2">FIND A TRADER WHO PRESENTS THE DIGITAL ASSET YOU WANT</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="visual_banner02.png">
+                <div class="container">
+                    <div class="paragraph">
+                        <p class="title1">DEFI•ANT IS AVAILABLE 24 HOURS <br>ANYWHERE IN THE WORLD.</p>
+                        <p class="title2">FIND A TRADER WHO PRESENTS THE DIGITAL ASSET YOU WANT</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container main-slide-control">
+            <div class="control">
+                <span class="main-prev arrow-btn"></span>
+                <span class="main-next arrow-btn"></span>
+                <div class="slider-status">
+                    <span class="current"></span>
+                    <div class="pagination"></div>
+                    <span class="total"></span>
+                    <div class="pause"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+	// 메인 비주얼
+	$('.main-banner').on('init', function(event, slick) {
+		//$('.slick-active .paragraph').addClass('on');
+		$('.pagination').addClass('on');
+		// 현재 페이지 넘버를 01로 기본 세팅
+		$('.current').text('0' + (slick.currentSlide + 1));
+
+		if(slick.slideCount < 10) {
+			// 총 슬라이드 개수가 10개 미만일 때 숫자 앞에 0를 붙힌다
+			$('.total').text('0' + slick.slideCount);
+		}
+		else{
+			// 총 슬라이드 개수가 10개 이상일 때 숫자 앞에 0을 뺀다
+			$('.total').text(slick.slideCount);
+		}
+	});
+
+	$('.main-banner').slick({
+		infinite: true,
+		autoplay: true,
+		autoplaySpeed: 5000,
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		pauseOnHover: false,
+		prevArrow: $('.main-prev'),
+		nextArrow: $('.main-next'),
+	})
+	.on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+		if(nextSlide < 10){
+			// 만약 현재 페이지 넘버가 10보다 낮은 숫자일 때 숫자 앞에 0을 붙이고
+			$('.current').text('0' + (nextSlide + 1));
+		}
+
+		if(nextSlide >= 9){
+			// 만약 현재 페이지 넘버가 10보다 높은 숫자일 때 숫자 앞에 0을 뺀다
+			$('.current').text(nextSlide + 1);
+		}
+		
+		// 슬라이드가 넘어가기 전 페이징에 클래스 리셋
+		$('.pagination').removeClass('on');
+		$('.pagination').removeClass('stop');
+		// 멈춤 버튼 리셋
+		$('.slider-status .pause').removeClass('play');
+	})
+	.on('afterChange', function(event, slick, currentSlide){
+		// 슬라이드가 넘어간 후 문구에 클래스 리셋
+		$('.paragraph').removeClass('on');
+		$('.slick-active .paragraph').addClass('on');
+
+		// 슬라이드가 넘어간 후 페이징에 클래스 추가
+		$('.pagination').addClass('on');
+		// 슬라이드 재생
+		$('.main-banner').slick('slickPlay');
+	});
+	
+	$('.slider-status .pause').click(function(){
+		$(this).toggleClass('play');
+
+		if ($(this).hasClass('play'))
+		{
+			// 슬라이드 자동 재생 멈춤
+			$('.main-banner').slick('slickPause');
+			// 페이징 애니메이션 멈춤
+			$('.pagination').removeClass('on');
+		}
+		else
+		{
+			// 슬라이드 자동 재생 시작
+			$('.main-banner').slick('slickPlay');
+			// 페이징 애니메이션 시작
+			$('.pagination').addClass('on');
+		}
+	});
+</script>
+</html>
