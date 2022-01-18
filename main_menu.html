@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Document</title>
+    <style>
+.hidden{
+    display:none;
+}
+ul, li{
+    list-style-type: none;
+}
+header {
+	border-bottom: 1px solid #e4e4e4;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1001;
+	background-color: #fff;
+}
+.container{
+    width: calc(130rem + 16rem);
+    padding:0 8rem;
+    max-width:100%;
+    margin: 0 auto;
+}
+
+header .grid1 {
+	display: flex;
+	align-items: flex-end;
+	padding-top: 3rem;
+}
+.header-social {
+	display: flex;
+	margin-left: 1rem;
+}
+.header-social li:not(:last-child) {
+	margin-right: 1.3rem;
+}
+.header-social a {
+	display: block;
+}
+header .login-menu {
+	margin-left: auto;
+	display: flex;
+}
+header .login-menu li:not(:last-child) {
+	margin-right: 1.6rem;
+	padding-right: 1.6rem;
+	position: relative;
+}
+header .login-menu li:not(:last-child):before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%);
+	width: 1px;
+	height: 1.2rem;
+	background-color: #cecece;
+}
+header .login-menu a {
+	display: block;
+	font-size: 1.4rem;
+}
+header .grid2 {
+	display: flex;
+	align-items: flex-start;
+	padding-top: 0.9rem;
+}
+.main-logo {
+	display: block;
+	margin-top: 1.7rem;
+	/* margin-bottom: 3.3rem; */
+}
+.nav-box {
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+}
+.main-nav {
+	margin-right: 2.8rem;
+}
+.main-nav .gnb {
+	display: flex;
+}
+.main-nav .gnb > li {
+	position: relative;
+}
+.main-nav h3 {
+	font-size: 1.8rem;
+	font-family: 'NSKB';
+}
+.main-nav h3 a {
+	color:#000;
+	padding: 0 2rem;
+	display: block;
+	/* position: relative; */
+	/*height: 8.8rem;*/
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.main-nav .gnb > li:hover h3 a {
+	color: #fff;
+	background-color: #000;
+}
+
+.sub-navi {
+	min-width: 100%;
+	display: none;
+	position: absolute;
+	bottom: 1rem;
+	left: 0;
+	transform: translateY(100%);
+	background-color: #000;	
+	padding: 2rem 0rem;
+}
+.sub-navi > li {
+	padding: 0 2rem;
+}
+.sub-navi > li.on > a {
+	background: url('../img/navi-arrow2.png') no-repeat right center;
+}
+.sub-navi > li.active:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	transform: translateX(100%);
+	width: 100%;
+	height: 100%;
+}
+.sub-navi a {
+	color: #fff;
+	font-size: 1.5rem;
+	font-family: 'NSKB';
+	height: 4rem;
+	display: flex;
+	align-items: center;
+	min-width: 12rem;
+	border-bottom: 1px solid #4d4d4d;
+	white-space: nowrap;
+}
+.three-navi {
+	display: none;
+	position: absolute;
+	top: 0rem;
+	right: 0;
+	transform: translateX(100%);
+	background-color: #000;	
+	padding: 2rem 0rem;
+	z-index: 1;
+}
+.three-navi > li {
+	padding: 0 3.5rem;
+}
+.three-navi a {
+	color: #c2c2c2;
+	border: 0;
+	min-width: 9rem;
+	position: relative;
+	padding-left: 0.5rem;
+}
+.three-navi > li > a:before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translateY(-50%);
+	width: 3px;
+	height: 3px;
+	border-radius: 50%;
+	background-color: #c2c2c2;
+}
+.four-navi a {
+	color: #909090;
+	font-size: 1.4rem;
+	font-family: 'NSKM';
+}
+.search-btn {
+	display: block;
+}
+.menu-btn {
+	display: block;
+	margin-left: 2.7rem;
+}
+.sub-nav-box {
+	background-color: #fff;
+	position: absolute;
+	left: 0;
+	bottom: -1px;
+	width: 100%;
+	transform: translateY(100%);
+	display: none;
+}
+.sub-nav-box .container {
+	display: flex;
+}
+.sub-nav-box .head {
+	width: 28rem;
+	flex-shrink: 0;
+	background-color: #e74656;
+}
+.sub-nav-box .head .inner {
+	height: 28rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+}
+.sub-nav-box .head .title {
+	font-size: 3.2rem;
+	font-family: 'JG';
+	padding-bottom: 2.8rem;
+	text-align: center;
+	line-height: 3.8rem;
+	position: relative;
+}
+.sub-nav-box .head .title:before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 5rem;
+	height: 3px;
+	background-color: #fff;
+}
+.sub-nav-box .head .description {
+	margin-top: 2.2rem;
+	font-size: 1.6rem;
+	font-family: 'JM';
+	line-height: 2.4rem;
+	text-align: center;
+}
+.sub-nav {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 4rem 5rem 3.2rem;
+	min-height: 32.6rem;
+	margin-bottom: -4rem;
+}
+.sub-menu {
+	margin-bottom: 4rem;
+}
+.sub-menu:not(:last-child) {
+	margin-right: 7.6rem;
+}
+.sub-menu h4 a {
+	font-size: 1.8rem;
+	font-family: 'NSKM';
+}
+.sub-menu .three-depth {
+	margin-top: 1rem;
+	line-height: 3rem;
+	padding-left: 2px;
+}
+.sub-menu .three-depth h5 a {
+	color: #606060;
+	font-size: 1.6rem;
+	position: relative;
+}
+.sub-menu .three-depth h5 a:before {
+	content: '';
+	position: absolute;
+	background: url('../img/red-dot.png') no-repeat center;
+	width: 3px;
+	height: 3px;
+	top: 50%;
+	left: -0.7rem;
+	transform: translateY(-50%);
+}
+.sub-menu .four-depth h6 a {
+	color: #909090;
+	font-size: 1.4rem;
+}
+.all-menu-box {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: #fff;
+	display: none;
+	overflow-y: auto;
+	max-height: 100vh;
+}
+.all-menu-box .head {
+	height: 14.9rem;
+	border-bottom: 1px solid #e4e4e4;
+}
+.all-menu-box .head .container {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+.all-menu-box .logo {
+	display: block;
+}
+.all-menu-box .close {
+	display: block;
+	position: absolute;
+	top: 50%;
+	right: 8rem;
+	transform: translateY(-50%);
+}
+.all-menu .grid {
+	padding-top: 5rem;
+	display: flex;
+}
+.all-menu .one-depth.event{
+	margin-top:-2rem;
+}
+.all-menu .one-depth {
+	width: 26rem;
+	flex-shrink: 0;
+}
+.all-menu .one-depth .title {
+	font-size: 2rem;
+	width:18rem;
+	height:6rem;
+	line-height:6rem;
+	text-align:center;
+	font-family: 'NSKM';
+	background-color:#000;
+	color:#fff;
+	/* border-bottom: 3px solid #e74656; */
+	padding-bottom: 1rem;
+	display: inline-block;
+}
+.all-nav {
+	display: flex;
+	flex-grow: 1;
+	flex-wrap: wrap;
+	border-bottom: 1px solid #e4e4e4;
+	padding-bottom: 1rem;
+}
+
+.all-sub {
+	width: 26rem;
+	padding-left: 4rem;
+	margin-bottom: 4rem;
+}
+.all-sub .title {
+	font-size: 1.8rem;
+    font-family: 'NSKM';
+}
+.all-sub .three-depth {
+    margin-top: 1rem;
+    line-height: 3rem;
+    padding-left: 2px;
+}
+.all-sub .three-depth li > a {
+    color: #606060;
+    font-size: 1.6rem;
+    position: relative;
+}
+.all-sub .three-depth li > a:before {
+	content: '';
+	position: absolute;
+	/* background: url('../img/gray-dot.png') no-repeat center; */
+	width: 3px;
+	height: 3px;
+	border-radius: 50%;
+	background-color: #c0c0c0;
+	top: 50%;
+	left: -0.7rem;
+	transform: translateY(-50%);
+}
+.all-sub .four-depth {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+.all-sub .four-depth a {
+	color: #909090;
+    font-size: 1.4rem;
+}
+.all-menu .mobile-util {
+	display: none;
+}
+.search-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    display: none;
+    overflow-y: auto;
+    max-height: 100vh;
+}
+.search-container .head {
+    height: 14.9rem;
+    border-bottom: 1px solid #e4e4e4;
+}
+.search-container .head .container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.search-container .logo {
+    display: block;
+}
+.search-container .close {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 8rem;
+    transform: translateY(-50%);
+}
+.search-container .bottom {
+	padding: 7.8rem 0;
+}
+.search-container .bottom .container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.search-container .search-bar {
+	width: 65rem;
+	max-width: 100%;
+	display: flex;
+	border-bottom: 2px solid #303030;
+	padding-bottom: 1.6rem;
+	padding-right: 2.2rem;
+}
+.search-container .search-bar input[type='text'] {
+	flex-grow: 1;
+	font-size: 2rem;
+	height: 2rem;
+}
+.search-container .submit {
+	border: 0;
+	background: url('../img/search-ico.png') no-repeat center / contain;
+	width: 2rem;
+	height: 2rem;
+	margin-left: 2.6rem;
+}
+
+/* 미디어쿼리 */
+
+/* max width */
+@media screen and (max-width: 1660px) {
+
+}
+/* 제주 컨테이너 */
+@media screen and (max-width: 1300px) {
+
+}
+/* 넷북 - 태블릿 */
+@media screen and (max-width: 1024px) {
+	header .grid1 {
+		display: none;
+	}
+	.main-nav .gnb {
+		display: none;
+	}
+	header .grid2 {
+		padding-top: 0;
+		align-items: center;
+		height: 8rem;
+	}
+	.main-logo {
+		margin-top: 0;
+	}
+	.main-logo img, .all-menu-box .logo img, .search-container .logo img {
+		width: 170px;
+	}
+	.all-menu-box .head, .search-container .head {
+		height: 8rem;
+	}
+	.all-menu .mobile-util {
+		display: flex !important;
+		padding-top: 1.8rem !important;
+	}
+	.all-menu .header-social {
+		margin-left: 0;
+	}
+	.all-menu .login-menu {
+		align-items: center;
+	}
+	.all-menu .login-menu a {
+		font-family: 'NSKM';
+		font-size: 1.6rem;
+	}
+	.all-menu .one-depth {
+		width: 20rem;
+	}
+	.all-sub {
+		width: 20rem;
+	}
+	.search-container .bottom {
+		padding: 4rem 0;
+	}
+}
+/* 태블릿 - 스마트폰 */
+@media screen and (max-width: 768px) {
+	.all-menu-box .close, .search-container .close {
+		right: 4rem;
+	}
+	.main-logo img, .all-menu-box .logo img, .search-container .logo img {
+		width: 150px;
+	}
+	.all-menu .grid {
+		display: block;
+		padding-top: 3rem;
+	}
+	.all-menu .one-depth.event{
+		margin-top:0rem;
+	}
+	.all-menu .one-depth {
+		width: 100%;
+		margin-bottom: 3.2rem;
+	}
+	.all-menu .one-depth .title {
+		/*border-bottom: 2px solid #e74656;*/
+		padding-bottom: 0.7rem;
+		font-size: 1.7rem;
+		width: 18rem;
+		height: 5rem;
+		line-height: 5rem;
+	}
+	.all-sub {
+		padding-left: 0;
+	}
+	.search-container .search-bar input[type='text'] {
+		font-size: 1.4rem;
+	}
+	.search-container .search-bar {
+		padding-bottom: 1rem;
+		padding-right: 0;
+	}
+}
+/* 스마트폰 */
+@media screen and (max-width: 480px) {
+	.all-menu-box .close, .search-container .close {
+		right: 2.6rem;
+	}
+	.all-menu .grid {
+		padding-top: 4rem;
+	}
+}
+/* 스마트폰 */
+@media screen and (max-width: 370px) {
+	.all-sub {
+		width: calc(100% / 2);
+	}
+}
+/* 스마트폰 */
+@media screen and (max-width: 320px) {
+
+}
+    </style>
+</head>
+<body>
+    <header>
+		<div class="container">
+			<div class="grid grid1">
+				<ul class="header-social">
+					<li>
+						<a href="https://www.facebook.com/jejucenter" title="제주창조경제혁신센터 페이스북 페이지" target="_blank">
+							<img src="{MARI_HOMESKIN_URL}/img/facebook.png" alt="페이스북">
+						</a>
+					</li>
+					<li>
+						<a href="https://www.youtube.com/channel/UCfTQNt_UnXiD7Alx2dlZbXg" title="제주창조경제혁신센터 유투브" target="_blank">
+							<img src="{MARI_HOMESKIN_URL}/img/youtube.png" alt="유튜브">
+						</a>
+					</li>
+					<li>
+						<a href="mailto:jeju@ccei.kr" title="제주창조경제혁신센터 메일 바로가기">
+							<img src="{MARI_HOMESKIN_URL}/img/mail.png" alt="이메일">
+						</a>
+					</li>
+					<li>
+						<a href="https://brunch.co.kr/@jejucenter#articles" title="제주창조경제혁신센터 브런치" target="_blank">
+							<img src="{MARI_HOMESKIN_URL}/img/brunch.png" alt="브런치">
+						</a>
+					</li>
+					<li>
+						<a href="https://m.post.naver.com/my.nhn?memberNo=41766309" title="제주창조경제혁신센터 네이버포스트" target="_blank">
+							<img src="{MARI_HOMESKIN_URL}/img/naverpost.png" alt="네이버포스트">
+						</a>
+					</li>
+				</ul>
+
+				<ul class="login-menu">
+					<li>
+						<a href="{MARI_HOME_URL}/?mode=login" title="로그인">로그인</a>
+					</li>
+					<!-- <li>
+						<a href="" title="로그아웃">로그아웃</a>
+					</li> -->
+					
+					<!-- <li>
+						<a href="{MARI_HOME_URL}/?mode=member_mypage" title="마이페이지">마이페이지</a>
+					</li> -->
+				</ul>
+			</div>
+
+			<div class="grid grid2">
+				<a href="{MARI_HOME_URL}/?mode=main" title="제주창조경제혁신센터" class="main-logo">
+					<h1 class="hidden">제주창조경제혁신센터</h1>
+					<img src="logo2.png" alt="제주창조경제혁신센터">
+				</a>
+
+				<div class="nav-box">
+					<nav class="main-nav">
+						<h2 class="hidden">주메뉴</h2>
+						<ul class="gnb">
+							<li>
+								<h3>
+									<a href="javascript:;" title="센터소개">센터소개</a>
+								</h3>
+
+								<ul class="sub-navi">
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=notice1" title="공지사항">공지사항</a>
+
+										<ul class="three-navi">
+											<li>
+												<a href="{MARI_HOME_URL}/?mode=notice1" title="센터소식">센터소식</a>
+											</li>
+											<li>
+												<a href="{MARI_HOME_URL}/?mode=notice2" title="타기관 소식">타기관 소식</a>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=news" title="보도자료">보도자료</a>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=center" title="센터소개">센터소개</a>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=history" title="연혁">연혁</a>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=organization" title="조직도">조직도</a>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=partners" title="PARTNERS">PARTNERS</a>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=direction" title="찾아오시는길">찾아오시는길</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<h3>
+									<a href="javascript:;" title="행사">행사</a>
+								</h3>
+
+								<ul class="sub-navi">
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=program" title="전체프로그램일정" class="title">전체프로그램일정</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<h3>
+									<a href="javascript:;" title="코워킹스페이스">코워킹스페이스</a>
+								</h3>
+
+								<ul class="sub-navi">
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=jspace" title="J-SPACE" class="title">J-SPACE</a>
+
+										<ul class="three-navi">
+											<li>
+												<a href="{MARI_HOME_URL}/?mode=jspace" title="소개">소개</a>
+											</li>
+											<li>
+												<a href="{MARI_HOME_URL}/?mode=reserve_dart" title="회의실 예약">회의실 예약</a>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=w360" title="W360" class="title">W360</a>
+
+										<ul class="three-navi">
+											<li>
+												<a href="{MARI_HOME_URL}/?mode=w360" title="소개">소개</a>
+											</li>
+											<li>
+												<a href="{MARI_HOME_URL}/?mode=reserve_delta" title="시설 예약">시설 예약</a>
+											</li>
+											<li>
+												<a href="{MARI_HOME_URL}/?mode=reserve_studio" title="스튜디오룸 예약">스튜디오룸 예약</a>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<h3>
+									<a href="javascript:;" title="프로그램">프로그램</a>
+								</h3>
+
+								<ul class="sub-navi">
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=academy" title="창업가양성" class="title">창업가양성</a>
+
+										<ul class="three-navi">
+											<li>
+												<a href="{MARI_HOME_URL}/?mode=academy" title="제이아카데미">J-Academy</a>
+											</li>
+											<li>
+												<a href="{MARI_HOME_URL}/?mode=kakao_class" title="카카오클래스">카카오클래스</a>
+											</li>
+											<li>
+												<a href="{MARI_HOME_URL}/?mode=local_creator" title="로컬크리에이터">로컬크리에이터</a>
+											</li>
+											<li>
+												<a href="{MARI_HOME_URL}/?mode=blockchain" title="블록체인 해커톤">블록체인 해커톤</a>
+											</li>
+											<li>
+												<a href="{MARI_HOME_URL}/?mode=one_stop" title="원스톱서비스">원스톱서비스</a>
+											</li>
+											<!-- <li>
+												<a href="{MARI_HOME_URL}/?mode=learnch" title="런(Learn)치 합시다.">런(Learn)치 합시다.</a>
+											</li> -->
+											<li>
+												<a href="{MARI_HOME_URL}/?mode=pitching" title="사업 아이디어 피칭데이">사업 아이디어 피칭데이</a>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=accel_intro" title="액셀러레이팅" class="title">액셀러레이팅</a>
+
+										<ul class="three-navi">
+											<li>
+												<a href="{MARI_HOME_URL}/?mode=accel_intro" title="사업소개">사업소개</a>
+											</li>
+											<li>
+												<a href="{MARI_HOME_URL}/?mode=childcare_basic" title="보육기업 성장지원">보육기업 성장지원</a>
+
+												<ul class="four-navi">
+													<li>
+														<a href="{MARI_HOME_URL}/?mode=childcare_basic" title="">기본 프로그램</a>
+													</li>
+													<li>
+														<a href="{MARI_HOME_URL}/?mode=childcare_special" title="">특별 프로그램</a>
+													</li>
+												</ul>
+											</li>
+											<li>
+												<a href="{MARI_HOME_URL}/?mode=support_moving" title="입주지원">입주지원</a>
+											</li>
+											<li>
+												<a href="{MARI_HOME_URL}/?mode=seed_money" title="시드머니 투자">시드머니 투자</a>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=invest_union" title="투자조합" class="title">투자조합</a>
+
+										<ul class="three-navi">
+											<li>
+												<a href="{MARI_HOME_URL}/?mode=invest_union" title="사업소개">사업소개</a>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=innovation" title="지역혁신" class="title">지역혁신</a>
+
+										<ul class="three-navi">
+											<li>
+												<a href="{MARI_HOME_URL}/?mode=innovation" title="리노베이션스쿨">리노베이션스쿨</a>
+											</li>
+											<li>
+												<a href="{MARI_HOME_URL}/?mode=local_branding" title="로컬브랜딩스쿨">로컬브랜딩스쿨</a>
+											</li>
+											<li>
+												<a href="{MARI_HOME_URL}/?mode=jconnect" title="J-CONNECT DAY">J-Connect Day</a>
+											</li>
+											<li>
+												<a href="{MARI_HOME_URL}/?mode=innovation_academy" title="공공혁신아카데미">공공혁신아카데미</a>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<h3>
+									<a href="javascript:;" title="매거진 & 아카이브">매거진 & 아카이브</a>
+								</h3>
+
+								<ul class="sub-navi">
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=magazine" title="J-CONNECT" class="title">J-Connect 매거진</a>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=photostory" title="PHOTO STORY" class="title">PHOTO STORY</a>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=archive2" title="지역혁신 아카이브" class="title">지역혁신 아카이브</a>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=reference" title="자료실" class="title">자료실</a>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=video" title="영상스케치" class="title">영상스케치</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+
+					<a href="javascript:;" title="검색창 열기" class="search-btn">
+						<img src="{MARI_HOMESKIN_URL}/img/search-ico.png" alt="검색창 열기">
+					</a>
+					<a href="javascript:;" title="전체메뉴 열기" class="menu-btn">
+						<img src="{MARI_HOMESKIN_URL}/img/all-menu.png" alt="전체메뉴 열기">
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- 검색창 -->
+		<div class="search-container">
+			<div class="head">
+				<div class="container">
+					<a href="{MARI_HOME_URL}/?mode=main" title="제주창조경제혁신센터" class="logo">
+						<img src="{MARI_HOMESKIN_URL}/img/logo.png" alt="제주창조경제혁신센터">
+					</a>
+
+					<a href="javascript:;" class="close">
+						<img src="{MARI_HOMESKIN_URL}/img/allMenu-close.png" alt="전체메뉴 닫기">
+					</a>
+				</div>
+			</div>
+			<div class="bottom">
+				<div class="container">
+					<div class="search-bar">
+						<input type="text" placeholder="검색어를 입력해주세요">
+						<input type="submit" value="" class="submit">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 전체메뉴 -->
+		<div class="all-menu-box">
+			<div class="head">
+				<div class="container">
+					<a href="{MARI_HOME_URL}/?mode=main" title="제주창조경제혁신센터" class="logo">
+						<img src="{MARI_HOMESKIN_URL}/img/logo.png" alt="제주창조경제혁신센터">
+					</a>
+
+					<a href="javascript:;" class="close">
+						<img src="{MARI_HOMESKIN_URL}/img/allMenu-close.png" alt="전체메뉴 닫기">
+					</a>
+				</div>
+			</div>
+			<div class="all-menu">
+				<div class="container">
+					<div class="grid mobile-util">
+						<ul class="header-social">
+							<li>
+								<a href="https://www.facebook.com/jejucenter" title="제주창조경제혁신센터 페이스북 페이지" target="_blank">
+									<img src="{MARI_HOMESKIN_URL}/img/facebook.png" alt="페이스북">
+								</a>
+							</li>
+							<li>
+								<a href="https://www.youtube.com/channel/UCfTQNt_UnXiD7Alx2dlZbXg" title="제주창조경제혁신센터 유투브" target="_blank">
+									<img src="{MARI_HOMESKIN_URL}/img/youtube.png" alt="유튜브">
+								</a>
+							</li>
+							<li>
+								<a href="mailto:jeju@ccei.kr" title="제주창조경제혁신센터 메일 바로가기">
+									<img src="{MARI_HOMESKIN_URL}/img/mail.png" alt="이메일">
+								</a>
+							</li>
+							<li>
+								<a href="https://brunch.co.kr/@jejucenter#articles" title="제주창조경제혁신센터 브런치" target="_blank">
+									<img src="{MARI_HOMESKIN_URL}/img/brunch.png" alt="브런치">
+								</a>
+							</li>
+							<li>
+								<a href="https://m.post.naver.com/my.nhn?memberNo=41766309" title="제주창조경제혁신센터 네이버포스트" target="_blank">
+									<img src="{MARI_HOMESKIN_URL}/img/naverpost.png" alt="네이버포스트">
+								</a>
+							</li>
+						</ul>
+						<ul class="login-menu">
+							<li>
+								<a href="{MARI_HOME_URL}/?mode=login" title="로그인">로그인</a>
+							</li>
+							<!-- <li>
+								<a href="" title="로그아웃">로그아웃</a>
+							</li> -->
+							
+							<!-- <li>
+								<a href="" title="마이페이지">마이페이지</a>
+							</li> -->
+						</ul>
+					</div>
+					<div class="grid">
+						<div class="one-depth">
+							<p class="title">센터소개</p>
+						</div>
+						<div class="all-nav">
+							<div class="all-sub">
+								<a href="{MARI_HOME_URL}/?mode=notice1" title="공지사항" class="title">공지사항</a>
+								<ul class="three-depth">
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=notice1" title="센터소식">센터소식</a>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=notice2" title="타기관 소식">타기관 소식</a>
+									</li>
+								</ul>
+							</div>
+							<div class="all-sub">
+								<a href="{MARI_HOME_URL}/?mode=news" title="보도자료" class="title">보도자료</a>
+							</div>
+							<div class="all-sub">
+								<a href="{MARI_HOME_URL}/?mode=center" title="센터소개" class="title">센터소개</a>
+							</div>
+							<div class="all-sub">
+								<a href="{MARI_HOME_URL}/?mode=history" title="연혁" class="title">연혁</a>
+							</div>
+							<div class="all-sub">
+								<a href="{MARI_HOME_URL}/?mode=organization" title="조직도" class="title">조직도</a>
+							</div>
+							<div class="all-sub">
+								<a href="{MARI_HOME_URL}/?mode=partners" title="PARTNERS" class="title">PARTNERS</a>
+							</div>
+							<div class="all-sub">
+								<a href="{MARI_HOME_URL}/?mode=direction" title="찾아오시는길" class="title">찾아오시는길</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="grid">
+						<div class="one-depth event">
+							<p class="title">행사</p>
+						</div>
+						<div class="all-nav">
+							<div class="all-sub">
+								<a href="{MARI_HOME_URL}/?mode=program" title="전체프로그램일정" class="title">전체프로그램일정</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="grid">
+						<div class="one-depth">
+							<p class="title">코워킹스페이스</p>
+						</div>
+						<div class="all-nav">
+							<div class="all-sub">
+								<a href="{MARI_HOME_URL}/?mode=jspace" title="J-SPACE" class="title">J-SPACE</a>
+								<ul class="three-depth">
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=jspace" title="소개">소개</a>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=reserve_dart" title="회의실 예약">회의실 예약</a>
+									</li>
+								</ul>
+							</div>
+							<div class="all-sub">
+								<a href="{MARI_HOME_URL}/?mode=w360" title="W360" class="title">W360</a>
+								<ul class="three-depth">
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=w360" title="소개">소개</a>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=reserve_delta" title="시설 예약">시설 예약</a>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=reserve_studio" title="스튜디오룸 예약">스튜디오룸 예약</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="grid">
+						<div class="one-depth">
+							<p class="title">프로그램</p>
+						</div>
+						<div class="all-nav">
+							<div class="all-sub">
+								<a href="{MARI_HOME_URL}/?mode=academy" title="창업가양성" class="title">창업가양성</a>
+								<ul class="three-depth">
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=academy" title="제이아카데미">J-Academy</a>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=kakao_class" title="카카오클래스">카카오클래스</a>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=local_creator" title="로컬크리에이터">로컬크리에이터</a>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=blockchain" title="블록체인 해커톤">블록체인 해커톤</a>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=one_stop" title="원스톱서비스">원스톱서비스</a>
+									</li>
+									<!--<li>
+										<a href="{MARI_HOME_URL}/?mode=learnch" title="런(Learn)치 합시다.">런(Learn)치 합시다.</a>
+									</li>-->
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=pitching" title="런(Learn)치 합시다.">사업 아이디어 피칭데이</a>
+									</li>
+								</ul>
+							</div>
+							<div class="all-sub">
+								<a href="{MARI_HOME_URL}/?mode=accel_intro" title="액셀러레이팅" class="title">액셀러레이팅</a>
+								<ul class="three-depth">
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=accel_intro" title="사업소개">사업소개</a>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=childcare_basic" title="보육기업 성장지원">보육기업 성장지원</a>
+										<div class="four-depth">
+											<a href="{MARI_HOME_URL}/?mode=childcare_basic" title="">기본 프로그램</a>
+											<a href="{MARI_HOME_URL}/?mode=childcare_special" title="">특별 프로그램</a>
+										</div>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=support_moving" title="입주지원">입주지원</a>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=seed_money" title="시드머니 투자">시드머니 투자</a>
+									</li>
+								</ul>
+							</div>
+							<div class="all-sub">
+								<a href="{MARI_HOME_URL}/?mode=invest_union" title="투자조합" class="title">투자조합</a>
+								<ul class="three-depth">
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=invest_union" title="사업소개">사업소개</a>
+									</li>
+								</ul>
+							</div>
+							<div class="all-sub">
+								<a href="{MARI_HOME_URL}/?mode=innovation" title="지역혁신" class="title">지역혁신</a>
+								<ul class="three-depth">
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=innovation" title="리노베이션스쿨">리노베이션스쿨</a>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=local_branding" title="로컬브랜딩스쿨">로컬브랜딩스쿨</a>
+									</li>
+									<li>
+										<a href="" title="J-CONNECT DAY">J-Connect Day</a>
+									</li>
+									<li>
+										<a href="{MARI_HOME_URL}/?mode=innovation_academy" title="공공혁신아카데미">공공혁신아카데미</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="grid">
+						<div class="one-depth">
+							<p class="title">매거진 & 아카이브</p>
+						</div>
+						<div class="all-nav">
+							<div class="all-sub">
+								<a href="{MARI_HOME_URL}/?mode=magazine" title="J-CONNECT" class="title">J-Connect 매거진</a>
+							</div>
+							<div class="all-sub">
+								<a href="{MARI_HOME_URL}/?mode=photostory" title="PHOTO STORY" class="title">PHOTO STORY</a>
+							</div>
+							<div class="all-sub">
+								<a href="{MARI_HOME_URL}/?mode=archive2" title="지역혁신 아카이브" class="title">지역혁신 아카이브</a>
+							</div>
+							<div class="all-sub">
+								<a href="{MARI_HOME_URL}/?mode=reference" title="자료실" class="title">자료실</a>
+							</div>
+							<div class="all-sub">
+								<a href="{MARI_HOME_URL}/?mode=video" title="영상스케치" class="title">영상스케치</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+</body>
+<script>
+    $(function(){
+        $('.gnb > li').focusin(function(){
+            $('.sub-navi').hide();
+            $(this).find('.sub-navi').show();
+            // $('#menu-dim').show();
+        });
+
+        $('.main-logo, .search-btn').focusin(function(){
+            $('.sub-navi').hide();
+            // $('#menu-dim').hide();
+        });
+
+        $('.gnb > li').mouseenter(function(){
+            $('.sub-navi').hide();
+            $(this).find('.sub-navi').show();
+            // $('#menu-dim').show();
+        });
+
+        $('.gnb > li').mouseleave(function(){
+            $('.sub-navi').hide();
+            // $('#menu-dim').hide();
+        });
+            
+        $('.sub-navi > li').focusin(function(){
+            $('.three-navi').hide();
+            $(this).find('.three-navi').show();
+            $('.sub-navi > li').removeClass('on');
+            $(this).addClass('on');
+        });
+
+        $('.sub-navi > li').mouseenter(function(){
+            $('.three-navi').hide();
+            $(this).find('.three-navi').show();
+            $('.sub-navi > li').removeClass('on');
+            $(this).addClass('on');
+            $('.sub-navi > li').removeClass('active');
+
+            if ($(this).children('.three-navi').length > 0)
+            {
+                $(this).addClass('active');
+            }
+        });
+
+        $('.sub-navi > li').mouseleave(function(){
+            $('.three-navi').hide();
+        });
+
+        $('.menu-btn').click(function(){
+            $('.all-menu-box').show();
+            $('#menu-dim').show();
+            $('body').css('overflow', 'hidden');
+        });
+
+        $('.all-menu-box .close').click(function(){
+            $('.all-menu-box').hide();
+            $('#menu-dim').hide();
+            $('body').css('overflow', 'visible');
+        });
+
+        $('.search-btn').click(function(){
+            $('.search-container').show();
+            $('#menu-dim').show();
+            $('body').css('overflow', 'hidden');
+        });
+
+        $('.search-container .close').click(function(){
+            $('.search-container').hide();
+            $('#menu-dim').hide();
+            $('body').css('overflow', 'visible');
+        });
+    });
+</script>
+</html>
