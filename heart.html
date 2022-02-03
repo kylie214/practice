@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+    body{
+        background-color: pink;
+
+    }
+    .favor {
+        position: absolute;
+        top: 2rem;
+        left: 0;
+        width: 3.2rem;
+        height: 2.9rem;
+        background: url('favor.png') no-repeat center / cover;
+    }
+    .favor.on {
+        background-image: url('favor-on.png');
+    }
+    </style>
+   
+</head>
+<body>
+    <a href="javascript:;" class="favor"></a>
+    <p>하트를 눌러보세요</p>
+
+</body>
+<script>
+    $(function(){
+
+        $('.favor').click(function(){
+            $(this).toggleClass('on');
+
+        });
+
+    });
+
+</script>
+</html>
